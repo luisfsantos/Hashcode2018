@@ -32,12 +32,12 @@ class Car(object):
 
     def arrival_time_of_ride(self, ride):
         distance_to_ride_start = ride.distance_from_intersection_to_start(self.available_position)
-        return max(distance_to_ride_start, ride.es) + ride.distance
+        return distance_to_ride_start + self.turn_when_available
 
     def add_ride(self, ride):
         self.rides += [ride]
         distance_to_ride_start = ride.distance_from_intersection_to_start(self.available_position)
-        self.turn_when_available = max(distance_to_ride_start, ride.es) + ride.distance
+        self.turn_when_available = max(distance_to_ride_start, ride.es) + ride.distance + 1
         self.available_position = ride.end
 
     def _get_ride_str_id(self, ride):
