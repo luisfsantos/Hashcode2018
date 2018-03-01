@@ -23,6 +23,8 @@ global_vars, rides = read_input(results.file_path)
 num_cars = global_vars['F']
 cars = [Car() for _ in range(num_cars)]
 
+T = global_vars['T']
+
 final_cars = cars.copy() # .copy() is faster than slicing
 #For each car pick a ride
 turn_available = True
@@ -31,7 +33,7 @@ while (turn_available):
     for car in cars[:]:
         if car.turn_when_available >= global_vars["T"]:
             cars.remove(car)
-        ride = pick_ride(car, rides, global_vars["B"])
+        ride = pick_ride(car, rides, global_vars["B"], T)
         if ride is None:
             # remove car from cars list, since it won't work
             cars.remove(car)
